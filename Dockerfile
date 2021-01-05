@@ -39,11 +39,11 @@ ENV CHEVERETO_DB_HOST=db CHEVERETO_DB_USERNAME=chevereto CHEVERETO_DB_PASSWORD=c
 ARG BUILD_DATE
 ARG CHEVERETO_VERSION=1.3.0
 
-# Set all required labels, we set it here to make sure the file is as reusable as possible
-LABEL org.label-schema.url="https://github.com/tanmng/docker-chevereto" \
-      org.label-schema.name="Chevereto Free" \
-      org.label-schema.license="Apache-2.0" \
-      org.label-schema.version="${CHEVERETO_VERSION}" \
-      org.label-schema.vcs-url="https://github.com/tanmng/docker-chevereto" \
-      maintainer="Tan Nguyen <tan.mng90@gmail.com>" \
-      build_signature="Chevereto free version ${CHEVERETO_VERSION}; built on ${BUILD_DATE}; Using PHP version ${PHP_VERSION}"
+# # Set all required labels, we set it here to make sure the file is as reusable as possible
+# LABEL org.label-schema.url="https://github.com/tanmng/docker-chevereto" \
+#       org.label-schema.name="Chevereto Free" \
+#       org.label-schema.license="Apache-2.0" \
+#       org.label-schema.version="${CHEVERETO_VERSION}" \
+#       org.label-schema.vcs-url="https://github.com/tanmng/docker-chevereto" \
+#       maintainer="Tan Nguyen <tan.mng90@gmail.com>" \
+#       build_signature="Chevereto free version ${CHEVERETO_VERSION}; built on ${BUILD_DATE}; Using PHP version ${PHP_VERSION}"
