@@ -3,12 +3,12 @@ ARG PHP_VERSION=7.4-apache
 FROM alpine as downloader
 
 ARG CHEVERETO_VERSION=1.2.2
-RUN apk add --no-cache curl && \
-    curl -sS -o /tmp/chevereto.zip -L "https://github.com/Chevereto/Chevereto-Free/archive/${CHEVERETO_VERSION}.zip" && \
+RUN apk add --no-cache wget && \
+    wget -O /tmp/chevereto.zip -L "https://github.com/Chevereto/Chevereto-Free/archive/1.2.2.zip" && \
     mkdir -p /extracted && \
     cd /extracted && \
     unzip /tmp/chevereto.zip  && \
-    mv "Chevereto-Free-${CHEVERETO_VERSION}/" Chevereto/
+    mv "Chevereto-Free-1.2.2/" Chevereto/
 COPY settings.php /extracted/Chevereto/app/settings.php
 
 FROM php:$PHP_VERSION
@@ -42,7 +42,7 @@ ARG CHEVERETO_VERSION=1.2.2
 LABEL org.label-schema.url="https://github.com/tanmng/docker-chevereto" \
       org.label-schema.name="Chevereto Free" \
       org.label-schema.license="Apache-2.0" \
-      org.label-schema.version="${CHEVERETO_VERSION}" \
+      org.label-schema.version="1.2.2" \
       org.label-schema.vcs-url="https://github.com/tanmng/docker-chevereto" \
       maintainer="Tan Nguyen <tan.mng90@gmail.com>" \
-      build_signature="Chevereto free version ${CHEVERETO_VERSION}; built on ${BUILD_DATE}; Using PHP version ${PHP_VERSION}"
+      build_signature="Chevereto free version 1.2.2; built on ${BUILD_DATE}; Using PHP version 7.4-apache"
