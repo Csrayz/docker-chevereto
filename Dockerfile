@@ -2,13 +2,13 @@
 ARG PHP_VERSION=7.4-apache
 FROM alpine as downloader
 
-ARG CHEVERETO_VERSION=1.2.2
+ARG CHEVERETO_VERSION=1.3.0
 RUN apk add --no-cache wget && \
-    wget -O /tmp/chevereto.zip -L "https://github.com/Chevereto/Chevereto-Free/archive/1.2.2.zip" && \
+    wget -O /tmp/chevereto.zip -L "https://github.com/Chevereto/Chevereto-Free/archive/${CHEVERETO_VERSION}.zip" && \
     mkdir -p /extracted && \
     cd /extracted && \
     unzip /tmp/chevereto.zip  && \
-    mv "Chevereto-Free-1.2.2/" Chevereto/
+    mv "Chevereto-Free-${CHEVERETO_VERSION}/" Chevereto/
 COPY settings.php /extracted/Chevereto/app/settings.php
 
 FROM php:$PHP_VERSION
@@ -16,8 +16,9 @@ FROM php:$PHP_VERSION
 # Install required packages and configure plugins + mods for Chevereto
 RUN apt-get update && apt-get install -y \
         libgd-dev \
+        libwebp-dev \
         libzip-dev && \
-    docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && \
+    docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg --with-webp && \
     docker-php-ext-install \
         exif \
         gd \
@@ -42,7 +43,7 @@ ARG CHEVERETO_VERSION=1.2.2
 LABEL org.label-schema.url="https://github.com/tanmng/docker-chevereto" \
       org.label-schema.name="Chevereto Free" \
       org.label-schema.license="Apache-2.0" \
-      org.label-schema.version="1.2.2" \
+      org.label-schema.version="${CHEVERETO_VERSION}" \
       org.label-schema.vcs-url="https://github.com/tanmng/docker-chevereto" \
       maintainer="Tan Nguyen <tan.mng90@gmail.com>" \
-      build_signature="Chevereto free version 1.2.2; built on ${BUILD_DATE}; Using PHP version 7.4-apache"
+      build_signature="Chevereto free version ${CHEVERETO_VERSION}; built on ${BUILD_DATE}; Using PHP version ${PHP_VERSION}"
