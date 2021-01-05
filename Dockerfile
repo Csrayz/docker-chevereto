@@ -37,7 +37,7 @@ VOLUME /var/www/html/images
 # DB connection environment variables
 ENV CHEVERETO_DB_HOST=db CHEVERETO_DB_USERNAME=chevereto CHEVERETO_DB_PASSWORD=chevereto CHEVERETO_DB_NAME=chevereto CHEVERETO_DB_PREFIX=chv_ CHEVERETO_DB_PORT=3306
 ARG BUILD_DATE
-ARG CHEVERETO_VERSION=1.2.2
+ARG CHEVERETO_VERSION=1.3.0
 
 # Set all required labels, we set it here to make sure the file is as reusable as possible
 LABEL org.label-schema.url="https://github.com/tanmng/docker-chevereto" \
